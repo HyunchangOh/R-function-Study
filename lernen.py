@@ -14,8 +14,8 @@ def main_menu(db):
 Welcome to R learning machine 2.0
 What do you want to do now?
 
-1. Learn 10 Random Sentences
-2. Learn By Thema
+1. Learn from Chapters
+2. Review Forgotten Functions
 3. View My Knowledge Status
 4. Add a new chapter
 
@@ -23,10 +23,10 @@ What do you want to do now?
     while True:
         mode = input(intro)
         os.system('cls')
-        if mode == "1":
+        if mode == "2":
             updated_user_data = learn_random(db,10)
             db["user_data"] = updated_user_data
-        elif mode == "2":
+        elif mode == "1":
             updated_user_data = learn_chapters(db)
             db["user_data"] = updated_user_data
         elif mode == "3":
@@ -46,10 +46,13 @@ def save_database(db):
     pickle.dump(db,f)
     f.close()
 
-def learn(db, sentences):
+def learn(db, sentences, all_choices=False):
     USER_DATA = db['user_data']
     current = 0
     review_sentences = []
+    if not all_choices:
+        all_choices = sentences
+        
     for sentence in sentences:
         already_failed = False
         staged = False
@@ -60,7 +63,7 @@ def learn(db, sentences):
             placeholder = print("What is the function described above? ")
 
             choices = []
-            choices_objects = random.choices(sentences,k=4)
+            choices_objects = random.choices(all_choices,k=4)
             for obj in choices_objects:
                 choices.append(obj[1])
 
@@ -125,7 +128,7 @@ def learn_random(db,num_of_sentences):
         sentences = expired_sentences
     else:
         sentences = expired_sentences[:num_of_sentences]
-    return learn(db, sentences)
+    return learn(db, sentences, expired_sentences)
 
 def get_expired(db):
     USER_DATA = db['user_data']
@@ -141,13 +144,19 @@ def get_expired(db):
             expired_sentences.append(SENTENCES[i])
     random.shuffle(expired_sentences)
     random.shuffle(new_sentences)
-    return expired_sentences + new_sentences #prioritize forgotten sentences
+    return expired_sentences
+    # return expired_sentences + new_sentences #prioritize forgotten sentences
 
 def learn_chapters(db):
     book = select_book(db)
     chapter = select_chapter(db,book)
     sentences = get_sentences(db,chapter)
-    return learn(db, sentences)
+    os.system('cls')
+    print("There are %d sentences in this chapter.\nYou will learn 10 of them in this session"%len(sentences))
+    chosen10 = random.choices(sentences,k=10)
+    next = input("Press Enter to begin.")
+    os.system('cls')
+    return learn(db, chosen10, sentences)
 
 def select_book(db):
     BOOKS = db["books"]
