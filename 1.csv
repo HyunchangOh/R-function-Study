@@ -1,0 +1,75 @@
+﻿sessionInfo(),session information including R version
+Sys.getenv(),whole list of system variables for R
+print(S),printing
+cat(),"converts args to chars and concatenate them, print them as it is"
+"data(iris,mtcars)",load built in R data iris and mtcars
+"read.csv(""file"")",read file
+?cat,help on cat
+??cat,search cat on R help DB
+help(cat),help on cat
+help.search(cat),search cat on R help DB
+.rs.restartR(),restart R session
+getwd(),get working directory
+"setwd(""…"")",set working directory
+R.home(),print the path of R Base
+.Library,print the path of R base Package library
+system.file(package='dslabs'),print the path of pkg library dslabs
+find.package('dslabs'),print the path of pkg library dslabs
+Sys.which('ls'),print path off function ls()
+dir(path),list directories
+list.files(path),list files
+list.dirs(recursive=T),lists only directories recursively
+choose.dir(),get a MS popup window interface to choose dirs or files
+choose.files(),get a MS popup window interface to choose dirs or files
+file.choose(),get a MS popup window interface to choose dirs or files
+Sys.setenv(HOME='~\R'),set environment var as
+"Sys.unsetenv(""HOME"")",remove environment variable
+Sys.getlocale(),"local information (language, etc)"
+"Sys.setlocale(""LC_ALL"", ""English"")",set local information like language
+"Sys.setlocale(""LC_MESSAGES"",""en_US.utf8"")",set local information like encoding
+"apropos(""term"")",search 'term' in R objects
+"exist(""a"")","search ""a"" in R objects on current R session"
+ls(),list all objects in current R session
+objects(),list all objects in current R session
+"rm(a,b,…)",remove objects from R session
+rm(list=ls()),remove all objects
+str(object),show data structure of the object
+ls.str(),str of all objects
+lsf.str(),str of function objects only
+load(file),load R data file
+"save(file, a, b)","save objects a, b, to R data file"
+save.image(file),save all objects
+"savehistory(file=""my.Rhistory"")",save the command history
+"loadhistory(file=""my.Rhistory"")",load the command history
+Install.packages('devtools'),install package on CRAN repository site
+"install_github(""github name/package name"")",Github site. Requries devtools pkg from CRAN
+"install_github(""genomicsclass/dagdata"")",Github URL(partial)
+"githubinstall(""package name"")",install github lib by pkg name
+gh_list_packages(),list packages in github
+gh_search_packages(),search packages in github
+"BiocManager::install(c('Biobase','Biostrings'))",requires BiocManager from CRAN. Install Bioconductor pkgs
+"install.packages(RExcelXML, repos=""URL"")",install from specific internet site
+"install.packages('jsonlite',type='source')",source code installation (requires Rtools from CRAN)
+"update.packages(""devtools"",""dplyr"",…)",update packages
+"remove.packages(""devtools"")",remove packages
+library(tidyverse),load library
+detach('package:dplyr'),detaching from search path
+unloadNamespace('dplyr'),unload from name space
+easypackages::libraries,load multiple pkgs (requires easypackages)
+"libraries(a,b,c)",load multiple pkgs (basic)
+"if(interactive()) {suppressMessages(require(PKG)),…}",automatic loading of pkgs. Add lines at .Rprofile at wd
+dplyr::select(),remove confliction of same name
+"conflict_prefer(""select"",""dplyr"")","if many select exists, choose the one from dplyr"
+loadNamespaces(),list loaded namespaces
+isNamespaceLoaded('dplyr'),true or false on name space loading
+".libPaths(""D:/R/win-library/4.0"")",set user lib path to set directory
+.libPaths(),list the path of all libs
+.libPaths()[1],user lib
+.libPaths()[2],system lib
+tidyverse::read_lines(),read a file line by line
+".packages(all.available=T,lib.loc=.Library)",list of pkg names (system lib)
+".packages(all.available=T,lib.loc=Sys.getenv(""R_LIBS_USER"")",list of pkg names residing in specific directory
+packageDescription('dplyr'),package description of pacakges
+"browseVignettes(package=""dplyr"")",get package description
+installed.packages(),organized summary on installed packages
+devtools::package_info(),organized summary on installed packages
